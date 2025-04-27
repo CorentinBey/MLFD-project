@@ -131,9 +131,4 @@ positions = traj.get_desired_positions()
 - Customizable **noise models** and **filtering methods**.
 - Extendable for **neural network re-training** if needed with new data.
 
----
-
-## ✍️ Authors
-
-- **Trajectory generation, optimal control, and data-driven modeling** designed and implemented by [Your Name Here].
 
