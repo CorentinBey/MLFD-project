@@ -111,6 +111,13 @@ traj.plot_trajectory(data=some_measured_data)
 
 # Get desired positions
 positions = traj.get_desired_positions()
+
+# Load and filter RPM data
+rpm = Data_rpm(file_paths)
+filtered_rpm_data = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=5)
+
+# Plot RPM data
+rpm.plot_rpm_data(filtered_rpm_data)
 ```
 
 ---
