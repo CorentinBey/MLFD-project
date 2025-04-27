@@ -34,8 +34,7 @@ folder = r'D:\Your\Own\Folder\path-to-RPM-files\'
 
 📂 Files Needed
 
-data/20250904-1558-04-hover.tsv: Flight trajectory measurements where 20250904 refere to the date of the flight, 1558 the hour, 04 the flight number and hover the type of flight.
-
+data/20250904-1558-04-hover.tsv: Flight trajectory measurements where 20250904 refere to the date of the flight, 1558 the hour, 04 the flight number and hover the type of flight. 
 data/RPM_aft_left.csv, data/RPM_aft_right.csv, data/RPM_front_left.csv, data/RPM_front_right.csv: Motor RPM measurements.
 ---
 
