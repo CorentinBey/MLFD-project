@@ -20,7 +20,7 @@ It is highly flexible for **trajectory tracking simulations**, **drone controlle
 ## 🚨 Important: Modify File Paths
 
 Before running the scripts, **make sure to adjust the following file paths** to match your own system:
-
+- In 'INVERSE_UPDATED.pkl', 'path_pkl': Path to the pickle file  
 - `hov_path4`: Path to the `.tsv` flight data file.
 - `folder`: Folder containing the RPM `.csv` files for the propellers.
 
@@ -103,7 +103,7 @@ folder = r'D:\Your\Own\Folder\path-to-RPM-files\'
 Install with:
 
 ```bash
-pip install numpy scipy matplotlib pandas statsmodels sympy scikit-learn os
+pip install numpy scipy matplotlib pandas statsmodels sympy scikit-learn os sklearn warnings pickle
 ```
 
 ---
