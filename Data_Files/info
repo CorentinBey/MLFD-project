@@ -1,1 +1,3 @@
 This folder contains the files with data about the different flights
+The CSV-files (RPM and BARO) contain data directly comming from the drone
+The tsv files are data points from different markers in x,y,z and t coming from the Qualisys system
