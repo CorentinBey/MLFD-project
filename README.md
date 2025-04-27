@@ -86,7 +86,7 @@ It is highly flexible for **trajectory tracking simulations**, **drone controlle
 Install with:
 
 ```bash
-pip install numpy scipy matplotlib pandas statsmodels sympy scikit-learn
+pip install numpy scipy matplotlib pandas statsmodels sympy scikit-learn os
 ```
 
 ---
