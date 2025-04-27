@@ -52,7 +52,7 @@ data/RPM_aft_left.csv, data/RPM_aft_right.csv, data/RPM_front_left.csv, data/RPM
 ---
 
 ## ⚙️ How It Works
-**`Drone_class1.py`**is the main file that compute the different trajectories. To let it run properly it needs the `BEMT_NN_INVERSE_CORRECT.py`,`DATA_18092024.xlsx` and `INVERSE_UPDATED.pkl`. The **`reading of qtm file.py`** can be used to read the different data files before using them in the `Drone_class1.py` file.
+**`Drone_class1.py`** is the main file that compute the different trajectories. To let it run properly it needs the `BEMT_NN_INVERSE_CORRECT.py`,`DATA_18092024.xlsx` and `INVERSE_UPDATED.pkl`. The **`reading of qtm file.py`** can be used to read the different data files before using them in the `Drone_class1.py` file.
 
 1. **Initialization**:
 
