@@ -17,6 +17,23 @@ It is highly flexible for **trajectory tracking simulations**, **drone controlle
 
 ---
 
+## 🚨 Important: Modify File Paths
+
+Before running the scripts, **make sure to adjust the following file paths** to match your own system:
+
+- `hov_path4`: Path to the `.tsv` flight data file.
+- `folder`: Folder containing the RPM `.csv` files for the propellers.
+
+Example changes you may need:
+```python
+hov_path4 = r'D:\Your\Own\Folder\path-to-hover-data.tsv'
+folder = r'D:\Your\Own\Folder\path-to-RPM-files\'
+```
+
+> 🔋 **Tip**: Use raw strings (`r'...'`) or double backslashes (`\\`) when specifying Windows paths.
+
+---
+
 ## 📂 Structure
 
 | File/Class   | Description                                                                 |
