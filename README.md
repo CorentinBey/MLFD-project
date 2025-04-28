@@ -133,10 +133,10 @@ traj = Trajectory(x, y, z, t, key="example", total_steps=1000, drone=drone)
 # Plot desired 3D trajectory
 traj.plot_trajectory(data=some_measured_data)
 
-# Get desired positions
-positions = traj.get_desired_positions()
+# Plot computed individual propeller RPMs
+traj.plot_individual_rpm()
 
-# Load and filter RPM data
+# Load and filter external RPM data
 rpm = Data_rpm(file_paths)
 filtered_rpm_data = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=5)
 
