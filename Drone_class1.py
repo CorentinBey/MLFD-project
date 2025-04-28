@@ -14,6 +14,7 @@ import statsmodels.api as sm
 from scipy.signal import butter, filtfilt
 import pandas as pd
 import os
+from scipy.signal import resample
 
 #%% Class Drone
 class Drone:
@@ -1424,12 +1425,14 @@ class Data_rpm:
             else:
                 print(f"Warning: {label} missing 'Time' or 'RPM' columns.")
 
-        plt.xlabel('Time [s]')
-        plt.ylabel('RPM')
-        plt.title('Motor RPM vs Time')
-        plt.legend()
+        plt.xlabel('Time [s]', fontsize = 28)
+        plt.ylabel('RPM', fontsize = 28)
+        plt.title('Motor RPM vs Time', fontsize = 36)
+        plt.legend(fontsize = 21)
         plt.grid(True)
         plt.tight_layout()
+        plt.xticks(fontsize=24)
+        plt.yticks(fontsize=24)
         plt.show()
         
     def plot_rpm_data_small_part(self, data_dict, index):
@@ -1451,12 +1454,14 @@ class Data_rpm:
             else:
                 print(f"Warning: {label} missing 'Time' or 'RPM' columns.")
 
-        plt.xlabel('Time [s]')
-        plt.ylabel('RPM')
-        plt.title('Motor RPM vs Time')
-        plt.legend()
+        plt.xlabel('Time [s]', fontsize = 28)
+        plt.ylabel('RPM', fontsize = 28)
+        plt.title('Motor RPM vs Time', fontsize = 36)
+        plt.legend(fontsize = 21)
         plt.grid(True)
         plt.tight_layout()
+        plt.xticks(fontsize=24)
+        plt.yticks(fontsize=24)
         plt.show()
     
     def lowess(self, data_vec, d, cutoff_freq=None, sampling_rate=None):
@@ -1579,3 +1584,142 @@ Traj_1.plot_individual_rpm() # Plot computed individual propeller RPMs
 # #Traj_2.plot_trajectory(data_h4)
 # Traj_2.plot_individual_rpm()
 # =============================================================================
+#%% Cost function analysis
+
+def rpm_cost_function(simulated_rpm_dict, experimental_rpm_array):
+    """
+    Cost function to minimize the distance between the simulated and experimental RPMs.
+
+    Parameters:
+    -----------
+    simulated_rpm_dict : dict
+        Dictionary containing simulated RPMs with keys 'rpm_1', 'rpm_2', 'rpm_3', 'rpm_4'.
+        Each key maps to a numpy array of RPM values over time.
+        
+    experimental_rpm_array : np.ndarray
+        Experimental RPMs, shape (4, N) where each row corresponds to a propeller (same order).
+        
+    Returns:
+    --------
+    cost : float
+        Sum of squared errors between simulated and experimental RPMs.
+    """
+    # Stack the simulated RPMs into a 4 x N array
+    simulated_rpm_array = np.vstack([
+        simulated_rpm_dict['rpm_1'],
+        simulated_rpm_dict['rpm_2'],
+        simulated_rpm_dict['rpm_3'],
+        simulated_rpm_dict['rpm_4']
+    ])
+    
+    # Ensure both arrays have the same shape
+    if simulated_rpm_array.shape != experimental_rpm_array.shape:
+        raise ValueError(f"Shape mismatch: simulated {simulated_rpm_array.shape} vs experimental {experimental_rpm_array.shape}")
+
+    # Compute the element-wise difference
+    diff = simulated_rpm_array - experimental_rpm_array
+
+    # Return the sum of squared differences
+    cost = np.sum(diff**2)
+    return cost
+
+def simulate_with_parameters(Traj_obj, scale_factor):
+    """
+    Recompute simulated RPMs with updated parameters.
+
+    Parameters:
+    -----------
+    Traj_obj : Trajectory
+        Your trajectory object (like Traj_1).
+        
+    scale_factor : float
+        Factor to scale thrusts (or another model parameter).
+        
+    Returns:
+    --------
+    simulated_rpm_dict : dict
+        Updated simulated RPMs.
+    """
+    # Apply scaling to thrust
+    T_prop_scaled = Traj_obj.T_propeller * scale_factor  # Scale the thrust
+    actual_velocities_bodyframe = Traj_obj._inertial_to_body_frame(Traj_obj.actual_velocities, Traj_obj.euler_angles)
+    alfa_disk_rad, V_inflow = Traj_obj._get_inflow_angle_alfadisc_and_velocity(actual_velocities_bodyframe, False)
+    
+    # Get RPMs with updated thrust
+    simulated_rpm_dict = Traj_obj._get_rpm_and_Q_net_from_NN(V_inflow, alfa_disk_rad, T_prop_scaled)
+    
+    return simulated_rpm_dict
+
+def optimization_cost(scale_factor, Traj_obj, experimental_rpm_array):
+    """
+    Wrapper for the optimizer.
+    """
+    simulated_rpm_dict = simulate_with_parameters(Traj_obj, scale_factor)
+    return rpm_cost_function(simulated_rpm_dict, experimental_rpm_array)
+
+def plot_rpm_comparison(Traj_obj, experimental_rpm_array, optimal_scale):
+    """
+    Plot simulated vs experimental RPM before and after optimization.
+    """
+    
+    
+    # Simulated BEFORE optimization
+    simulated_before = np.vstack([
+    Traj_obj.propeller_dictionary['rpm_1'],
+    Traj_obj.propeller_dictionary['rpm_2'],
+    Traj_obj.propeller_dictionary['rpm_3'],
+    Traj_obj.propeller_dictionary['rpm_4']
+    ])
+    
+    # Simulated AFTER optimization
+    simulated_after_dict = simulate_with_parameters(Traj_obj, optimal_scale)
+    simulated_after = np.vstack([
+    simulated_after_dict['rpm_1'],
+    simulated_after_dict['rpm_2'],
+    simulated_after_dict['rpm_3'],
+    simulated_after_dict['rpm_4']
+    ])
+    
+    time = Traj_obj.t_vec  # Time vector
+    
+    prop_labels = ['Propeller 1 (FR)', 'Propeller 2 (FL)', 'Propeller 3 (RL)', 'Propeller 4 (RR)']
+    
+    fig, axs = plt.subplots(4, 1, figsize=(12, 16), sharex=True)
+    for i in range(4):
+        axs[i].plot(time, experimental_rpm_array[i, :], label='Experimental', color='black', linestyle='dashed')
+        axs[i].plot(time, simulated_before[i, :], label='Simulated (before)', color='red', alpha=0.7)
+        axs[i].plot(time, simulated_after[i, :], label='Simulated (after)', color='blue', alpha=0.7)
+        
+        axs[i].set_ylabel('RPM')
+        axs[i].set_title(prop_labels[i])
+        axs[i].grid(True)
+        axs[i].legend()
+        
+    axs[-1].set_xlabel('Time [s]')
+    plt.tight_layout()
+    plt.show()
+    
+    
+resampled_experimental_rpm_array = np.vstack([
+    resample(data_rpm_filtered['RPM_front_right']['RPM'][78:102].values, Traj_1.t_vec.size),
+    resample(data_rpm_filtered['RPM_front_left']['RPM'][78:102].values, Traj_1.t_vec.size),
+    resample(data_rpm_filtered['RPM_aft_left']['RPM'][78:102].values, Traj_1.t_vec.size),
+    resample(data_rpm_filtered['RPM_aft_right']['RPM'][78:102].values, Traj_1.t_vec.size)
+])
+
+Traj_1.calc_individual_Thrust()
+Traj_1._calc_rpm()
+
+# Optimize
+result = minimize(optimization_cost, 
+                  x0=[1.0], 
+                  args=(Traj_1, resampled_experimental_rpm_array), 
+                  bounds=[(0.5, 5)], 
+                  method='L-BFGS-B')
+
+optimal_scale = result.x[0]
+print(f"Optimal scale factor found: {optimal_scale:.5f}")
+print(f"Final cost: {result.fun:.5f}")
+
+# Plot
+plot_rpm_comparison(Traj_1, resampled_experimental_rpm_array, optimal_scale)    
