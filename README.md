@@ -138,7 +138,7 @@ traj.plot_individual_rpm()
 
 # Load and filter external RPM data
 rpm = Data_rpm(file_paths)
-filtered_rpm_data = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=5)
+filtered_rpm_data = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=40)
 
 # Plot RPM data
 rpm.plot_rpm_data(filtered_rpm_data)
