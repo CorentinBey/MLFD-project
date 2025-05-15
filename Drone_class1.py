@@ -16,8 +16,25 @@ import pandas as pd
 import os
 from scipy.signal import resample
 
+__all__ = ["Drone", "Trajectory"]
+
+
 #%% Class Drone
 class Drone:
+    """
+    A class representing a multirotor drone's basic physical parameters.
+
+    Parameters
+    ----------
+    m : float
+        Mass of the drone in kg.
+    l_arm : float
+        Arm length in meters.
+    I : ndarray
+        Inertia matrix of the drone.
+    n_rotor : int
+        Number of rotors on the drone.
+    """
     def __init__(self, m, l_arm, I, n_rotor):
         #Drone properties
         self.m = m
@@ -33,6 +50,26 @@ class Drone:
 #%%Class Trajectory
        
 class Trajectory(Drone):
+    """
+    A trajectory planner and controller for a multirotor drone.
+
+    Inherits from Drone and computes polynomial trajectories through waypoints.
+
+    Parameters
+    ----------
+    x, y, z : list of float
+        Waypoints in meters.
+    t : list of float
+        Time for each waypoint.
+    key : str
+        Identifier name for the trajectory.
+    total_steps : int
+        Number of time steps in the trajectory.
+    drone : Drone
+        The drone object to apply the trajectory to.
+    n_order : int, optional
+        Order of trajectory polynomials. Default is 4.
+    """
     
     def __init__(self, x, y, z, t, key, total_steps, drone ,n_order = 4):
         #Importing waypoints for the trajectory
@@ -92,14 +129,14 @@ class Trajectory(Drone):
         """
         Generate the boundary condition vectors for x, y, z trajectories.
     
-        Parameters:
+        Parameters
         ----------
         BC_endpoints : int
             Number of boundary conditions applied at the start and end of each segment (e.g., position, velocity).
         BC_intermediatepoints : int
             Number of boundary conditions applied at intermediate points (between waypoints).
     
-        Returns:
+        Returns
         -------
         b : np.ndarray
             Full vector containing all boundary conditions (shared across x, y, z).
@@ -110,7 +147,7 @@ class Trajectory(Drone):
         b_z : np.ndarray
             Boundary condition vector for z-coordinate.
         
-        Notes:
+        Notes
         -----
         - This function constructs the required boundary condition vectors that will later be used 
           to solve for the polynomial trajectory coefficients.
@@ -143,14 +180,14 @@ class Trajectory(Drone):
         """
         Generate the matrix of polynomial basis functions and their derivatives.
     
-        Parameters:
+        Parameters
         ----------
         n_poly : int
             Maximum degree of the polynomial (highest exponent).
         BC_intermediatepoints : int
             Number of intermediate derivative orders needed.
     
-        Returns:
+        Returns
         -------
         f_matrix : list of lists
             A matrix where f_matrix[i][j] gives the j-th polynomial derivative function at derivative order i.
@@ -172,7 +209,7 @@ class Trajectory(Drone):
         """
         Generate the A matrix used in the linear system A * p = b, where p are the polynomial coefficients.
         
-        Parameters:
+        Parameters
         ----------
         m : int
             Number of trajectory segments (number of waypoints - 1).
@@ -189,7 +226,7 @@ class Trajectory(Drone):
         b : np.ndarray
             Boundary condition vector.
         
-        Returns:
+        Returns
         -------
         A : np.ndarray
             Constraint matrix A that relates the polynomial coefficients to the boundary conditions.
@@ -273,7 +310,7 @@ class Trajectory(Drone):
         """
         Solve for the polynomial coefficients that define the full trajectory in x, y, and z directions.
     
-        Returns:
+        Returns
         -------
         p_x, p_y, p_z : np.ndarray
             Coefficient vectors for the x, y, and z trajectories respectively.
@@ -307,14 +344,14 @@ class Trajectory(Drone):
         """
         Compute the cost based on the difference between actual and desired accelerations.
     
-        Parameters:
+        Parameters
         ----------
         T_theta_phi : list or np.ndarray
             Thrust, pitch (theta), and roll (phi) values [T, theta, phi].
         a_x_desired, a_y_desired, a_z_desired : float
             Desired accelerations along x, y, and z axes.
     
-        Returns:
+        Returns
         -------
         cost : float
             Squared error between actual and desired accelerations (cost value).
@@ -340,14 +377,14 @@ class Trajectory(Drone):
         """
         Compute the gradient of the cost function with respect to thrust, pitch, and roll.
     
-        Parameters:
+        Parameters
         ----------
         T_theta_phi : list or np.ndarray
             Thrust, pitch (theta), and roll (phi) values [T, theta, phi].
         a_x_desired, a_y_desired, a_z_desired : float
             Desired accelerations along x, y, and z axes.
     
-        Returns:
+        Returns
         -------
         gradient : np.ndarray
             Gradient vector [dE/dT, dE/dtheta, dE/dphi].
@@ -380,14 +417,14 @@ class Trajectory(Drone):
         """
         Find the optimal thrust and attitude (theta, phi) that produce desired accelerations.
     
-        Parameters:
+        Parameters
         ----------
         a_x_desired, a_y_desired, a_z_desired : function
             Functions of time returning the desired accelerations.
         time_vector_cost : list or np.ndarray
             Time vector over which the optimization is performed.
     
-        Returns:
+        Returns
         -------
         T_optimal : list
             Optimal thrust values over time.
@@ -418,7 +455,7 @@ class Trajectory(Drone):
         """
         Integrate acceleration data to obtain velocity using explicit Euler method.
     
-        Parameters:
+        Parameters
         ----------
         a_actual : array-like
             List of actual accelerations.
@@ -427,7 +464,7 @@ class Trajectory(Drone):
         v_end : float
             Final velocity (used for end correction).
     
-        Returns:
+        Returns
         -------
         v_actual : np.ndarray
             Integrated velocity values.
@@ -453,7 +490,7 @@ class Trajectory(Drone):
         """
         Compute the derivative using forward finite difference.
         
-        Parameters:
+        Parameters
         ----------
         theta : array-like
             Vector of values (e.g., angles).
@@ -464,7 +501,7 @@ class Trajectory(Drone):
         order : int
             Order of the difference (2 or 4).
         
-        Returns:
+        Returns
         -------
         derivative : float
             Approximated derivative at index i.
@@ -478,7 +515,7 @@ class Trajectory(Drone):
         """
         Compute the derivative using backward finite difference.
     
-        Parameters:
+        Parameters
         ----------
         theta : array-like
             Vector of values (e.g., angles).
@@ -489,7 +526,7 @@ class Trajectory(Drone):
         order : int
             Order of the difference (2 or 4).
     
-        Returns:
+        Returns
         -------
         derivative : float
             Approximated derivative at index i.
@@ -503,7 +540,7 @@ class Trajectory(Drone):
         """
         Compute the derivative using central finite difference.
     
-        Parameters:
+        Parameters
         ----------
         theta : array-like
             Vector of values (e.g., angles).
@@ -514,7 +551,7 @@ class Trajectory(Drone):
         order : int
             Order of the difference (2 or 4).
     
-        Returns:
+        Returns
         -------
         derivative : float
             Approximated derivative at index i.
@@ -530,12 +567,12 @@ class Trajectory(Drone):
         """
         Compute the time derivative of Euler angles using finite difference methods.
     
-        Parameters:
+        Parameters
         ----------
         theta : np.ndarray
             Euler angle values (roll, pitch, or yaw) over time.
     
-        Returns:
+        Returns
         -------
         thetadot : np.ndarray
             Approximated time derivative of the Euler angle.
@@ -575,14 +612,14 @@ class Trajectory(Drone):
         """
         Compute actual accelerations (a_x, a_y, a_z) from thrust and attitude.
     
-        Parameters:
+        Parameters
         ----------
         T : array-like
             Thrust values over time.
         theta, phi : array-like
             Pitch and roll angles over time.
     
-        Returns:
+        Returns
         -------
         a_x_actual, a_y_actual, a_z_actual : list
             Lists of computed accelerations in each axis.
@@ -624,7 +661,7 @@ class Trajectory(Drone):
         """
         Compute body rates (p, q, r) and their derivatives from Euler angles and angular rates.
     
-        Parameters:
+        Parameters
         ----------
         total_steps : int
             Number of simulation steps.
@@ -635,7 +672,7 @@ class Trajectory(Drone):
         psidot_part : array-like
             Yaw rate.
     
-        Returns:
+        Returns
         -------
         p, q, r : np.ndarray
             Body angular rates.
@@ -675,14 +712,14 @@ class Trajectory(Drone):
         """
         Apply LOWESS smoothing filter to multiple RPM signals (matrix).
     
-        Parameters:
+        Parameters
         ----------
         rpm_total_ : list of array-like
             List of RPM signals.
         t_rpm : array-like
             Time vector corresponding to RPM signals.
     
-        Returns:
+        Returns
         -------
         rpm_total_filtered : list of np.ndarray
             Smoothed RPM signals.
@@ -702,7 +739,7 @@ class Trajectory(Drone):
         """
         Generate the full 3D drone trajectory based on waypoints and polynomials.
     
-        Returns:
+        Returns
         -------
         desired_positions : list of np.ndarray
         actual_positions : list of np.ndarray
@@ -834,12 +871,12 @@ class Trajectory(Drone):
         """
         Compute required moments (torques) from body angular rates and their derivatives.
     
-        Parameters:
+        Parameters
         ----------
         body_rates_dot : np.ndarray
             Angular rate derivatives.
     
-        Returns:
+        Returns
         -------
         M_total : np.ndarray
             Computed moments (torques) over time.
@@ -866,14 +903,14 @@ class Trajectory(Drone):
         """
         Compute individual propeller thrusts to produce total thrust and desired roll/pitch moments.
     
-        Parameters:
+        Parameters
         ----------
         T_total : array-like
             Total thrust values.
         Moments : array-like
             Moments (roll and pitch) to be achieved.
     
-        Returns:
+        Returns
         -------
         T_tot_check : np.ndarray
             Recomputed total thrust (sanity check).
@@ -928,7 +965,7 @@ class Trajectory(Drone):
         """
         Compute RPM and net torque from Neural Network based on inflow conditions and thrust.
         
-        Parameters:
+        Parameters
         ----------
         V_inflow : array-like
             Inflow velocities.
@@ -937,7 +974,7 @@ class Trajectory(Drone):
         T_prop : array-like
             Thrust per propeller.
         
-        Returns:
+        Returns
         -------
         prop_dict : dict
             Dictionary containing RPM, torque (Q), and net torque (Q_net) for each propeller.
@@ -978,14 +1015,14 @@ class Trajectory(Drone):
         """
         Compute inflow angle and magnitude based on body frame velocities.
     
-        Parameters:
+        Parameters
         ----------
         velocities_body : array-like
             3D velocity components in body frame.
         convert : bool
             If True, convert angle to degrees.
     
-        Returns:
+        Returns
         -------
         alfa_disk_total : np.ndarray
             Inflow angles.
@@ -1015,12 +1052,12 @@ class Trajectory(Drone):
         """
         Compute rotation matrix from inertial frame to body frame.
     
-        Parameters:
+        Parameters
         ----------
         phi, theta, psi : float
             Roll, pitch, yaw angles.
     
-        Returns:
+        Returns
         -------
         R : np.ndarray
             3x3 rotation matrix.
@@ -1039,14 +1076,14 @@ class Trajectory(Drone):
         """
         Convert velocities from inertial frame to body frame.
     
-        Parameters:
+        Parameters
         ----------
         velocities : array-like
             Inertial frame velocities.
         angles : array-like
             Euler angles.
     
-        Returns:
+        Returns
         -------
         velocities_body : np.ndarray
             Body frame velocities.
@@ -1081,7 +1118,7 @@ class Trajectory(Drone):
         """
         Get the desired 3D positions along the trajectory.
     
-        Returns:
+        Returns
         -------
         desired_positions : list
             x, y, z desired positions over time.
@@ -1113,7 +1150,7 @@ class Trajectory(Drone):
         """
         Add random Gaussian noise to individual thrust signals.
     
-        Returns:
+        Returns
         -------
         noised_signal : np.ndarray
             Thrust signals with added noise.
@@ -1129,7 +1166,7 @@ class Trajectory(Drone):
         """
         Add random Gaussian noise to individual propeller RPM signals.
     
-        Returns:
+        Returns
         -------
         noised_signal : np.ndarray
             RPM signals with added noise.
@@ -1156,7 +1193,7 @@ class Trajectory(Drone):
         """
         Plot noisy and filtered thrust signals for all propellers.
     
-        Parameters:
+        Parameters
         ----------
         d : float
             LOWESS smoothing fraction.
@@ -1193,7 +1230,7 @@ class Trajectory(Drone):
         """
         Plot noisy and filtered RPM signals for a selected propeller.
     
-        Parameters:
+        Parameters
         ----------
         d : float
             LOWESS smoothing fraction.
@@ -1254,7 +1291,7 @@ class Trajectory(Drone):
         """
         Filter a signal using optional Butterworth filter + LOWESS smoothing.
     
-        Parameters:
+        Parameters
         ----------
         vector : array-like
             Data to be smoothed.
@@ -1265,7 +1302,7 @@ class Trajectory(Drone):
         sampling_rate : float, optional
             Data sampling rate.
     
-        Returns:
+        Returns
         -------
         smoothed_vector : np.ndarray
             Smoothed signal.
@@ -1286,7 +1323,7 @@ class Trajectory(Drone):
         """
         Plot the 3D desired trajectory alongside experimental data (e.g., Qualisys).
     
-        Parameters:
+        Parameters
         ----------
         data : array-like
             Measured 3D positions to overlay.
@@ -1381,7 +1418,7 @@ class Data_rpm:
         """
         Initialize the Data_rpm object.
     
-        Parameters:
+        Parameters
         ----------
         paths : list
             List of paths to the CSV files containing RPM data.
@@ -1393,7 +1430,7 @@ class Data_rpm:
         """
         Load all RPM CSV files and organize them into a dictionary.
     
-        Returns:
+        Returns
         -------
         data : dict
             Dictionary with labels as keys and corresponding RPM DataFrames as values.
@@ -1412,7 +1449,7 @@ class Data_rpm:
         """
         Plot full RPM time series for each dataset.
     
-        Parameters:
+        Parameters
         ----------
         data_dict : dict
             Dictionary of DataFrames containing 'Time' and 'RPM' columns to plot.
@@ -1439,7 +1476,7 @@ class Data_rpm:
         """
         Plot a specific part of the RPM time series.
     
-        Parameters:
+        Parameters
         ----------
         data_dict : dict
             Dictionary of DataFrames containing 'Time' and 'RPM' columns to plot.
@@ -1468,7 +1505,7 @@ class Data_rpm:
         """
         Apply optional Butterworth filter followed by LOWESS smoothing to RPM data.
     
-        Parameters:
+        Parameters
         ----------
         data_vec : DataFrame
             DataFrame containing 'Time' and 'RPM' columns.
@@ -1479,7 +1516,7 @@ class Data_rpm:
         sampling_rate : float, optional
             Sampling rate of the signal (Hz).
     
-        Returns:
+        Returns
         -------
         smoothed_vector : np.ndarray
             Smoothed RPM values.
@@ -1502,14 +1539,14 @@ class Data_rpm:
         """
         Load RPM data and apply filtering (optional Butterworth + LOWESS).
     
-        Parameters:
+        Parameters
         ----------
         d : float, optional
             LOWESS fraction parameter for smoothing (default is 0.02).
         cutoff_freq : float, optional
             Cutoff frequency for optional Butterworth filter (Hz).
     
-        Returns:
+        Returns
         -------
         filtered_data : dict
             Dictionary containing filtered RPM DataFrames with 'Time' and 'RPM' columns.
@@ -1525,201 +1562,204 @@ class Data_rpm:
             self.filtered_data[label] = filtered_df
         return self.filtered_data
         
+def run_example():
+    # --- Load flown trajectory data (from Qualisys/experimental recording) ---
+    hov_path4 = r'D:\VKI\Project\Test flight\20250409\Flights\export-tsv\20250904-1558-04-hover.tsv'
+    df = pd.read_csv(hov_path4, sep='\t', skiprows = 12, header=None)/1000
+    data_h4 = df.to_numpy()
+
+    # --- Define file paths for propeller RPM measurements ---
+    folder = r"D:\VKI\Project\Test flight\20250409\Flights\hover\drone\20250409-1558-04-hover_"  # Change this path if needed
+    patterns = np.array(["RPM_aft_left", "RPM_aft_right", "RPM_front_left", "RPM_front_right"])
+    file_paths = [folder + pattern + ".csv" for pattern in patterns]
+
+    # --- Load and filter RPM data ---
+    rpm = Data_rpm(file_paths)
+    data_rpm = rpm.load_rpm_data()
+    indices = [78,102]
+    data_rpm_filtered = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=40)
+    rpm.plot_rpm_data_small_part(data_rpm_filtered,indices)
+
+    #rpm.plot_rpm_data(data_rpm)
+    n = 4  # velocity is 1st order, acceleration is 2nd order, jerk is 3rd order, snap is 4th order
+
+    # Waypoints obtained from the flown trajectory (position in meters)
+    x_waypoint = [0.078582,  0.066121,  0.054091,  0.040123,  0.025547,  
+                  0.011525, -0.002027, -0.013824, -0.024317, -0.034134]  #[0, 8, 0, 8]
+    y_waypoint = [-1.041588, -1.065625, -1.06986 , -1.052896, -1.016325, 
+                  -0.98067, -0.971433, -0.983934, -1.015618, -1.034557]   #[0, 4, 0, 4]
+    z_waypoint = [0.496714, 0.639687, 0.809938, 0.987289, 1.166493, 
+                  1.351557, 1.549719, 1.753027, 1.946396, 2.072185]  #[10, 10, 10, 10]
+    # Time at each waypoint (seconds)
+    t_waypoint = [9.79167, 10.09167, 10.39167, 10.69167, 10.99167, 
+                  11.29167, 11.59167, 11.89167, 12.19167, 12.49167]   #[0, 5, 9, 12]
+    total_steps = 500  # steps between each waypoint
+
+    # --- Define Drone Parameters ---
+    m = 1.626  # Mass of the quadcopter in kg
+    l_arm = 0.26608
+    g = 9.81  # Gravity in m/s^2
+    I = np.array([[0.0213,  9.0792e-7, 1.7882e-7],
+         [9.0792e-7, 0.0207, 1.0837e-4],
+         [1.7882e-7, 1.0837e-4, 0.0325]])
+
+    # --- Create Drone Object ---
+    drone = Drone(m, l_arm, I*0.6, n_rotor=4)
+
+    # --- Generate Trajectory for Drone 1 (standard mass) ---
+    Traj_1 = Trajectory(x_waypoint, y_waypoint, z_waypoint, t_waypoint, "Traj1", total_steps, drone)
+
+    # --- Plotting ---
+    Traj_1.plot_trajectory(data_h4) # Plot generated trajectory vs real measured data
+    Traj_1.plot_individual_rpm() # Plot computed individual propeller RPMs
+
+    # =============================================================================
+    # drone_2 = Drone(m*1.2, l_arm, I, n_rotor=4)
+    # Traj_2 = Trajectory(x_waypoint, y_waypoint, z_waypoint, t_waypoint, "Traj2", total_steps, drone_2)
+    # #Traj_2.plot_trajectory(data_h4)
+    # Traj_2.plot_individual_rpm()
+    # =============================================================================
+    #%% Cost function analysis
+
+    def rpm_cost_function(simulated_rpm_dict, experimental_rpm_array):
+        """
+        Cost function to minimize the distance between the simulated and experimental RPMs.
+
+        Parameters
+        ----------
+        simulated_rpm_dict : dict
+            Dictionary containing simulated RPMs with keys 'rpm_1', 'rpm_2', 'rpm_3', 'rpm_4'.
+            Each key maps to a numpy array of RPM values over time.
+            
+        experimental_rpm_array : np.ndarray
+            Experimental RPMs, shape (4, N) where each row corresponds to a propeller (same order).
+            
+        Returns
+        -------
+        cost : float
+            Sum of squared errors between simulated and experimental RPMs.
+        """
+        # Stack the simulated RPMs into a 4 x N array
+        simulated_rpm_array = np.vstack([
+            simulated_rpm_dict['rpm_1'],
+            simulated_rpm_dict['rpm_2'],
+            simulated_rpm_dict['rpm_3'],
+            simulated_rpm_dict['rpm_4']
+        ])
         
+        # Ensure both arrays have the same shape
+        if simulated_rpm_array.shape != experimental_rpm_array.shape:
+            raise ValueError(f"Shape mismatch: simulated {simulated_rpm_array.shape} vs experimental {experimental_rpm_array.shape}")
+
+        # Compute the element-wise difference
+        diff = simulated_rpm_array - experimental_rpm_array
+
+        # Return the sum of squared differences
+        cost = np.sum(diff**2)
+        return cost
+
+    def simulate_with_parameters(Traj_obj, scale_factor):
+        """
+        Recompute simulated RPMs with updated parameters.
+
+        Parameters
+        ----------
+        Traj_obj : Trajectory
+            Your trajectory object (like Traj_1).
+            
+        scale_factor : float
+            Factor to scale thrusts (or another model parameter).
+            
+        Returns
+        -------
+        simulated_rpm_dict : dict
+            Updated simulated RPMs.
+        """
+        # Apply scaling to thrust
+        T_prop_scaled = Traj_obj.T_propeller * scale_factor  # Scale the thrust
+        actual_velocities_bodyframe = Traj_obj._inertial_to_body_frame(Traj_obj.actual_velocities, Traj_obj.euler_angles)
+        alfa_disk_rad, V_inflow = Traj_obj._get_inflow_angle_alfadisc_and_velocity(actual_velocities_bodyframe, False)
+        
+        # Get RPMs with updated thrust
+        simulated_rpm_dict = Traj_obj._get_rpm_and_Q_net_from_NN(V_inflow, alfa_disk_rad, T_prop_scaled)
+        
+        return simulated_rpm_dict
+
+    def optimization_cost(scale_factor, Traj_obj, experimental_rpm_array):
+        """
+        Wrapper for the optimizer.
+        """
+        simulated_rpm_dict = simulate_with_parameters(Traj_obj, scale_factor)
+        return rpm_cost_function(simulated_rpm_dict, experimental_rpm_array)
+
+    def plot_rpm_comparison(Traj_obj, experimental_rpm_array, optimal_scale):
+        """
+        Plot simulated vs experimental RPM before and after optimization.
+        """
+        
+        
+        # Simulated BEFORE optimization
+        simulated_before = np.vstack([
+        Traj_obj.propeller_dictionary['rpm_1'],
+        Traj_obj.propeller_dictionary['rpm_2'],
+        Traj_obj.propeller_dictionary['rpm_3'],
+        Traj_obj.propeller_dictionary['rpm_4']
+        ])
+        
+        # Simulated AFTER optimization
+        simulated_after_dict = simulate_with_parameters(Traj_obj, optimal_scale)
+        simulated_after = np.vstack([
+        simulated_after_dict['rpm_1'],
+        simulated_after_dict['rpm_2'],
+        simulated_after_dict['rpm_3'],
+        simulated_after_dict['rpm_4']
+        ])
+        
+        time = Traj_obj.t_vec  # Time vector
+        
+        prop_labels = ['Propeller 1 (FR)', 'Propeller 2 (FL)', 'Propeller 3 (RL)', 'Propeller 4 (RR)']
+        
+        fig, axs = plt.subplots(4, 1, figsize=(12, 16), sharex=True)
+        for i in range(4):
+            axs[i].plot(time, experimental_rpm_array[i, :], label='Experimental', color='black', linestyle='dashed')
+            axs[i].plot(time, simulated_before[i, :], label='Simulated (before)', color='red', alpha=0.7)
+            axs[i].plot(time, simulated_after[i, :], label='Simulated (after)', color='blue', alpha=0.7)
+            
+            axs[i].set_ylabel('RPM')
+            axs[i].set_title(prop_labels[i])
+            axs[i].grid(True)
+            axs[i].legend()
+            
+        axs[-1].set_xlabel('Time [s]')
+        plt.tight_layout()
+        plt.show()
+        
+        
+    resampled_experimental_rpm_array = np.vstack([
+        resample(data_rpm_filtered['RPM_front_right']['RPM'][78:102].values, Traj_1.t_vec.size),
+        resample(data_rpm_filtered['RPM_front_left']['RPM'][78:102].values, Traj_1.t_vec.size),
+        resample(data_rpm_filtered['RPM_aft_left']['RPM'][78:102].values, Traj_1.t_vec.size),
+        resample(data_rpm_filtered['RPM_aft_right']['RPM'][78:102].values, Traj_1.t_vec.size)
+    ])
+
+    Traj_1.calc_individual_Thrust()
+    Traj_1._calc_rpm()
+
+    # Optimize
+    result = minimize(optimization_cost, 
+                      x0=[1.0], 
+                      args=(Traj_1, resampled_experimental_rpm_array), 
+                      bounds=[(0.5, 5)], 
+                      method='L-BFGS-B')
+
+    optimal_scale = result.x[0]
+    print(f"Optimal scale factor found: {optimal_scale:.5f}")
+    print(f"Final cost: {result.fun:.5f}")
+
+    # Plot
+    plot_rpm_comparison(Traj_1, resampled_experimental_rpm_array, optimal_scale)        
     
 #%%
-# --- Load flown trajectory data (from Qualisys/experimental recording) ---
-hov_path4 = r'D:\VKI\Project\Test flight\20250409\Flights\export-tsv\20250904-1558-04-hover.tsv'
-df = pd.read_csv(hov_path4, sep='\t', skiprows = 12, header=None)/1000
-data_h4 = df.to_numpy()
 
-# --- Define file paths for propeller RPM measurements ---
-folder = r"D:\VKI\Project\Test flight\20250409\Flights\hover\drone\20250409-1558-04-hover_"  # Change this path if needed
-patterns = np.array(["RPM_aft_left", "RPM_aft_right", "RPM_front_left", "RPM_front_right"])
-file_paths = [folder + pattern + ".csv" for pattern in patterns]
-
-# --- Load and filter RPM data ---
-rpm = Data_rpm(file_paths)
-data_rpm = rpm.load_rpm_data()
-indices = [78,102]
-data_rpm_filtered = rpm.load_and_filter_rpm_data(d=0.02, cutoff_freq=40)
-rpm.plot_rpm_data_small_part(data_rpm_filtered,indices)
-
-#rpm.plot_rpm_data(data_rpm)
-n = 4  # velocity is 1st order, acceleration is 2nd order, jerk is 3rd order, snap is 4th order
-
-# Waypoints obtained from the flown trajectory (position in meters)
-x_waypoint = [0.078582,  0.066121,  0.054091,  0.040123,  0.025547,  
-              0.011525, -0.002027, -0.013824, -0.024317, -0.034134]  #[0, 8, 0, 8]
-y_waypoint = [-1.041588, -1.065625, -1.06986 , -1.052896, -1.016325, 
-              -0.98067, -0.971433, -0.983934, -1.015618, -1.034557]   #[0, 4, 0, 4]
-z_waypoint = [0.496714, 0.639687, 0.809938, 0.987289, 1.166493, 
-              1.351557, 1.549719, 1.753027, 1.946396, 2.072185]  #[10, 10, 10, 10]
-# Time at each waypoint (seconds)
-t_waypoint = [9.79167, 10.09167, 10.39167, 10.69167, 10.99167, 
-              11.29167, 11.59167, 11.89167, 12.19167, 12.49167]   #[0, 5, 9, 12]
-total_steps = 500  # steps between each waypoint
-
-# --- Define Drone Parameters ---
-m = 1.626  # Mass of the quadcopter in kg
-l_arm = 0.26608
-g = 9.81  # Gravity in m/s^2
-I = np.array([[0.0213,  9.0792e-7, 1.7882e-7],
-     [9.0792e-7, 0.0207, 1.0837e-4],
-     [1.7882e-7, 1.0837e-4, 0.0325]])
-
-# --- Create Drone Object ---
-drone = Drone(m, l_arm, I, n_rotor=4)
-
-# --- Generate Trajectory for Drone 1 (standard mass) ---
-Traj_1 = Trajectory(x_waypoint, y_waypoint, z_waypoint, t_waypoint, "Traj1", total_steps, drone)
-
-# --- Plotting ---
-Traj_1.plot_trajectory(data_h4) # Plot generated trajectory vs real measured data
-Traj_1.plot_individual_rpm() # Plot computed individual propeller RPMs
-
-# =============================================================================
-# drone_2 = Drone(m*1.2, l_arm, I, n_rotor=4)
-# Traj_2 = Trajectory(x_waypoint, y_waypoint, z_waypoint, t_waypoint, "Traj2", total_steps, drone_2)
-# #Traj_2.plot_trajectory(data_h4)
-# Traj_2.plot_individual_rpm()
-# =============================================================================
-#%% Cost function analysis
-
-def rpm_cost_function(simulated_rpm_dict, experimental_rpm_array):
-    """
-    Cost function to minimize the distance between the simulated and experimental RPMs.
-
-    Parameters:
-    -----------
-    simulated_rpm_dict : dict
-        Dictionary containing simulated RPMs with keys 'rpm_1', 'rpm_2', 'rpm_3', 'rpm_4'.
-        Each key maps to a numpy array of RPM values over time.
-        
-    experimental_rpm_array : np.ndarray
-        Experimental RPMs, shape (4, N) where each row corresponds to a propeller (same order).
-        
-    Returns:
-    --------
-    cost : float
-        Sum of squared errors between simulated and experimental RPMs.
-    """
-    # Stack the simulated RPMs into a 4 x N array
-    simulated_rpm_array = np.vstack([
-        simulated_rpm_dict['rpm_1'],
-        simulated_rpm_dict['rpm_2'],
-        simulated_rpm_dict['rpm_3'],
-        simulated_rpm_dict['rpm_4']
-    ])
-    
-    # Ensure both arrays have the same shape
-    if simulated_rpm_array.shape != experimental_rpm_array.shape:
-        raise ValueError(f"Shape mismatch: simulated {simulated_rpm_array.shape} vs experimental {experimental_rpm_array.shape}")
-
-    # Compute the element-wise difference
-    diff = simulated_rpm_array - experimental_rpm_array
-
-    # Return the sum of squared differences
-    cost = np.sum(diff**2)
-    return cost
-
-def simulate_with_parameters(Traj_obj, scale_factor):
-    """
-    Recompute simulated RPMs with updated parameters.
-
-    Parameters:
-    -----------
-    Traj_obj : Trajectory
-        Your trajectory object (like Traj_1).
-        
-    scale_factor : float
-        Factor to scale thrusts (or another model parameter).
-        
-    Returns:
-    --------
-    simulated_rpm_dict : dict
-        Updated simulated RPMs.
-    """
-    # Apply scaling to thrust
-    T_prop_scaled = Traj_obj.T_propeller * scale_factor  # Scale the thrust
-    actual_velocities_bodyframe = Traj_obj._inertial_to_body_frame(Traj_obj.actual_velocities, Traj_obj.euler_angles)
-    alfa_disk_rad, V_inflow = Traj_obj._get_inflow_angle_alfadisc_and_velocity(actual_velocities_bodyframe, False)
-    
-    # Get RPMs with updated thrust
-    simulated_rpm_dict = Traj_obj._get_rpm_and_Q_net_from_NN(V_inflow, alfa_disk_rad, T_prop_scaled)
-    
-    return simulated_rpm_dict
-
-def optimization_cost(scale_factor, Traj_obj, experimental_rpm_array):
-    """
-    Wrapper for the optimizer.
-    """
-    simulated_rpm_dict = simulate_with_parameters(Traj_obj, scale_factor)
-    return rpm_cost_function(simulated_rpm_dict, experimental_rpm_array)
-
-def plot_rpm_comparison(Traj_obj, experimental_rpm_array, optimal_scale):
-    """
-    Plot simulated vs experimental RPM before and after optimization.
-    """
-    
-    
-    # Simulated BEFORE optimization
-    simulated_before = np.vstack([
-    Traj_obj.propeller_dictionary['rpm_1'],
-    Traj_obj.propeller_dictionary['rpm_2'],
-    Traj_obj.propeller_dictionary['rpm_3'],
-    Traj_obj.propeller_dictionary['rpm_4']
-    ])
-    
-    # Simulated AFTER optimization
-    simulated_after_dict = simulate_with_parameters(Traj_obj, optimal_scale)
-    simulated_after = np.vstack([
-    simulated_after_dict['rpm_1'],
-    simulated_after_dict['rpm_2'],
-    simulated_after_dict['rpm_3'],
-    simulated_after_dict['rpm_4']
-    ])
-    
-    time = Traj_obj.t_vec  # Time vector
-    
-    prop_labels = ['Propeller 1 (FR)', 'Propeller 2 (FL)', 'Propeller 3 (RL)', 'Propeller 4 (RR)']
-    
-    fig, axs = plt.subplots(4, 1, figsize=(12, 16), sharex=True)
-    for i in range(4):
-        axs[i].plot(time, experimental_rpm_array[i, :], label='Experimental', color='black', linestyle='dashed')
-        axs[i].plot(time, simulated_before[i, :], label='Simulated (before)', color='red', alpha=0.7)
-        axs[i].plot(time, simulated_after[i, :], label='Simulated (after)', color='blue', alpha=0.7)
-        
-        axs[i].set_ylabel('RPM')
-        axs[i].set_title(prop_labels[i])
-        axs[i].grid(True)
-        axs[i].legend()
-        
-    axs[-1].set_xlabel('Time [s]')
-    plt.tight_layout()
-    plt.show()
-    
-    
-resampled_experimental_rpm_array = np.vstack([
-    resample(data_rpm_filtered['RPM_front_right']['RPM'][78:102].values, Traj_1.t_vec.size),
-    resample(data_rpm_filtered['RPM_front_left']['RPM'][78:102].values, Traj_1.t_vec.size),
-    resample(data_rpm_filtered['RPM_aft_left']['RPM'][78:102].values, Traj_1.t_vec.size),
-    resample(data_rpm_filtered['RPM_aft_right']['RPM'][78:102].values, Traj_1.t_vec.size)
-])
-
-Traj_1.calc_individual_Thrust()
-Traj_1._calc_rpm()
-
-# Optimize
-result = minimize(optimization_cost, 
-                  x0=[1.0], 
-                  args=(Traj_1, resampled_experimental_rpm_array), 
-                  bounds=[(0.5, 5)], 
-                  method='L-BFGS-B')
-
-optimal_scale = result.x[0]
-print(f"Optimal scale factor found: {optimal_scale:.5f}")
-print(f"Final cost: {result.fun:.5f}")
-
-# Plot
-plot_rpm_comparison(Traj_1, resampled_experimental_rpm_array, optimal_scale)    
+if __name__ == "__main__":
+    run_example()
