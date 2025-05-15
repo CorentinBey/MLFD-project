@@ -1,0 +1,15 @@
+sphinx>=7.0
+sphinx-rtd-theme
+sphinxcontrib-applehelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-jsmath
+sphinxcontrib-qthelp
+sphinxcontrib-serializinghtml
+matplotlib
+numpy
+scipy
+pandas
+sympy
+statsmodels
+scikit-learn
+os
