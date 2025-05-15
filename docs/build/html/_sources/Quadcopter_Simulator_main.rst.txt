@@ -1,0 +1,133 @@
+Quadcopter\_Simulator\_main package
+===================================
+
+Submodules
+----------
+
+Quadcopter\_Simulator\_main.BEMT\_NN\_INVERSE\_CORRECT module
+-------------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.BEMT\_NN\_get\_Thrust module
+--------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.BEMT_NN_get_Thrust
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.BEMT\_simulator\_inflow\_angle module
+-----------------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.BEMT_simulator_inflow_angle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Drone\_class module
+-----------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Drone_class
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Drone\_class1 module
+------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Drone_class1
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Profil module
+-----------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Profil
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Propeller module
+--------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Propeller
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Propeller\_2 module
+-----------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Propeller_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Section module
+------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Section
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Section\_2 module
+---------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Section_2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Simulateur module
+---------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Simulateur
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Simulator\_FUNCTIONS module
+-------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Simulator_FUNCTIONS
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Simulator\_inverse\_method\_validation module
+-------------------------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Simulator_inverse_method_validation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Trajectory\_Algorithm module
+--------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Trajectory_Algorithm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Quadcopter\_Simulator\_main.Trajectory\_Algorithm\_Copy module
+--------------------------------------------------------------
+
+.. automodule:: Quadcopter_Simulator_main.Trajectory_Algorithm_Copy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: Quadcopter_Simulator_main
+   :members:
+   :undoc-members:
+   :show-inheritance:

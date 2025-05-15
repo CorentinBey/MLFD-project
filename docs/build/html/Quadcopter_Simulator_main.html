@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quadcopter_Simulator_main package &mdash; MLFD Doc 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MLFD Doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Drone_class1.html">Drone_class1 Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MLFD Doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quadcopter_Simulator_main package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Quadcopter_Simulator_main.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quadcopter-simulator-main-package">
+<h1>Quadcopter_Simulator_main package<a class="headerlink" href="#quadcopter-simulator-main-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT">
+<span id="quadcopter-simulator-main-bemt-nn-inverse-correct-module"></span><h2>Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT module<a class="headerlink" href="#module-Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.</span></span><span class="sig-name descname"><span class="pre">BEMT_NN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_of_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_layer_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tanh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Calculate">
+<span class="sig-name descname"><span class="pre">Calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V_inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Calculate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Diagnostics">
+<span class="sig-name descname"><span class="pre">Diagnostics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Diagnostics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ExportModel">
+<span class="sig-name descname"><span class="pre">ExportModel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ExportModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.GetData">
+<span class="sig-name descname"><span class="pre">GetData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.GetData" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.GetDataSK">
+<span class="sig-name descname"><span class="pre">GetDataSK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.GetDataSK" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ImportModel">
+<span class="sig-name descname"><span class="pre">ImportModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ImportModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.MLP_Initialize">
+<span class="sig-name descname"><span class="pre">MLP_Initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.MLP_Initialize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ReferenceSettings">
+<span class="sig-name descname"><span class="pre">ReferenceSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.ReferenceSettings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.SK_Initialize">
+<span class="sig-name descname"><span class="pre">SK_Initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.SK_Initialize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Settings">
+<span class="sig-name descname"><span class="pre">Settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_INVERSE_CORRECT.BEMT_NN.Settings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.BEMT_NN_get_Thrust">
+<span id="quadcopter-simulator-main-bemt-nn-get-thrust-module"></span><h2>Quadcopter_Simulator_main.BEMT_NN_get_Thrust module<a class="headerlink" href="#module-Quadcopter_Simulator_main.BEMT_NN_get_Thrust" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.BEMT_NN_get_Thrust.</span></span><span class="sig-name descname"><span class="pre">BEMT_NN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_of_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_layer_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tanh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'adam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Calculate">
+<span class="sig-name descname"><span class="pre">Calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Velocity_magnitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Calculate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Diagnostics">
+<span class="sig-name descname"><span class="pre">Diagnostics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Diagnostics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ExportModel">
+<span class="sig-name descname"><span class="pre">ExportModel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ExportModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.GetData">
+<span class="sig-name descname"><span class="pre">GetData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.GetData" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.GetDataSK">
+<span class="sig-name descname"><span class="pre">GetDataSK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.GetDataSK" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ImportModel">
+<span class="sig-name descname"><span class="pre">ImportModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ImportModel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.MLP_Initialize">
+<span class="sig-name descname"><span class="pre">MLP_Initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.MLP_Initialize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ReferenceSettings">
+<span class="sig-name descname"><span class="pre">ReferenceSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.ReferenceSettings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.SK_Initialize">
+<span class="sig-name descname"><span class="pre">SK_Initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.SK_Initialize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Settings">
+<span class="sig-name descname"><span class="pre">Settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_NN_get_Thrust.BEMT_NN.Settings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.BEMT_simulator_inflow_angle">
+<span id="quadcopter-simulator-main-bemt-simulator-inflow-angle-module"></span><h2>Quadcopter_Simulator_main.BEMT_simulator_inflow_angle module<a class="headerlink" href="#module-Quadcopter_Simulator_main.BEMT_simulator_inflow_angle" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Obtain_T_and_Q_BEMT_alphadisk">
+<span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.</span></span><span class="sig-name descname"><span class="pre">Obtain_T_and_Q_BEMT_alphadisk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">V</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpm_prop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Obtain_T_and_Q_BEMT_alphadisk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.</span></span><span class="sig-name descname"><span class="pre">Simulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_infinity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_blades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diameter_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitchs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Les données en input nécessaires :</p>
+<p>v_infinity : La vitesse d’écoulement de l’air entrant dans le propeller (en m/s)
+rpm : La vitesse de rotation du propeller.</p>
+<p>nb_blades : Le nombre de pales du propeller (en général 2)
+diameter_rotor : Le diamètre du rotor (en mètre)</p>
+<p>chords = 0.02 0.027 …. EN METRES
+radii = 0.015 0.03 …. EN METRES
+pitchs = 6 8 10 EN DEGRES –&gt; Le pitch est en gros l’inclinaison de la section : angle chord et horizontale
+profile = NACA_XXXX</p>
+<p>En constante :</p>
+<p>Masse volumique de l’air (rho)</p>
+<p>En sortie :</p>
+<p>Poussée (T)
+Couple (Q)
+Puissance Méca (P)</p>
+<p>Formule d’évolution de rho en fonction de l’altitude : 352.995*((1-0.0000225577*altitude)^5.25516)/(288.15-0.0065*altitude)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.brute_solve">
+<span class="sig-name descname"><span class="pre">brute_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3600</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.brute_solve" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.calcul">
+<span class="sig-name descname"><span class="pre">calcul</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.calcul" title="Link to this definition"></a></dt>
+<dd><p>return T,Q,P</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.calcul_rho">
+<span class="sig-name descname"><span class="pre">calcul_rho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.calcul_rho" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.induced_velocity_calcul">
+<span class="sig-name descname"><span class="pre">induced_velocity_calcul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.induced_velocity_calcul" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.load_simulator">
+<span class="sig-name descname"><span class="pre">load_simulator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.load_simulator" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.tracer_vitesses_induites">
+<span class="sig-name descname"><span class="pre">tracer_vitesses_induites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.BEMT_simulator_inflow_angle.Simulator.tracer_vitesses_induites" title="Link to this definition"></a></dt>
+<dd><p>Code pour tracer les vitesses induites : fait par ChatGPT</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="quadcopter-simulator-main-drone-class-module">
+<h2>Quadcopter_Simulator_main.Drone_class module<a class="headerlink" href="#quadcopter-simulator-main-drone-class-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-Quadcopter_Simulator_main.Drone_class1">
+<span id="quadcopter-simulator-main-drone-class1-module"></span><h2>Quadcopter_Simulator_main.Drone_class1 module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Drone_class1" title="Link to this heading"></a></h2>
+<p>Created on Fri Mar  7 09:29:06 2025</p>
+<p>&#64;author: Corentin</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Drone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Drone_class1.</span></span><span class="sig-name descname"><span class="pre">Drone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_arm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_rotor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing a multirotor drone’s basic physical parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>float</em>) – Mass of the drone in kg.</p></li>
+<li><p><strong>l_arm</strong> (<em>float</em>) – Arm length in meters.</p></li>
+<li><p><strong>I</strong> (<em>ndarray</em>) – Inertia matrix of the drone.</p></li>
+<li><p><strong>n_rotor</strong> (<em>int</em>) – Number of rotors on the drone.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Drone_class1.</span></span><span class="sig-name descname"><span class="pre">Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Quadcopter_Simulator_main.Drone_class1.Drone"><code class="xref py py-class docutils literal notranslate"><span class="pre">Drone</span></code></a></p>
+<p>A trajectory planner and controller for a multirotor drone.</p>
+<p>Inherits from Drone and computes polynomial trajectories through waypoints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>y</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>z</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>t</strong> (<em>list</em><em> of </em><em>float</em>) – Time for each waypoint.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – Identifier name for the trajectory.</p></li>
+<li><p><strong>total_steps</strong> (<em>int</em>) – Number of time steps in the trajectory.</p></li>
+<li><p><strong>drone</strong> (<a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Quadcopter_Simulator_main.Drone_class1.Drone"><em>Drone</em></a>) – The drone object to apply the trajectory to.</p></li>
+<li><p><strong>n_order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of trajectory polynomials. Default is 4.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_rpm">
+<span class="sig-name descname"><span class="pre">add_noise_rpm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_rpm" title="Link to this definition"></a></dt>
+<dd><p>Add random Gaussian noise to individual propeller RPM signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>noised_signal</strong> – RPM signals with added noise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_thrust">
+<span class="sig-name descname"><span class="pre">add_noise_thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_thrust" title="Link to this definition"></a></dt>
+<dd><p>Add random Gaussian noise to individual thrust signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>noised_signal</strong> – Thrust signals with added noise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.calc_individual_Thrust">
+<span class="sig-name descname"><span class="pre">calc_individual_Thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.calc_individual_Thrust" title="Link to this definition"></a></dt>
+<dd><p>Calculate and store individual thrusts per propeller if not already computed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.filter_noise">
+<span class="sig-name descname"><span class="pre">filter_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.filter_noise" title="Link to this definition"></a></dt>
+<dd><p>Filter a signal using optional Butterworth filter + LOWESS smoothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> (<em>array-like</em>) – Data to be smoothed.</p></li>
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>cutoff_freq</strong> (<em>float</em><em>, </em><em>optional</em>) – Butterworth cutoff frequency.</p></li>
+<li><p><strong>sampling_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Data sampling rate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>smoothed_vector</strong> – Smoothed signal.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.get_desired_positions">
+<span class="sig-name descname"><span class="pre">get_desired_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.get_desired_positions" title="Link to this definition"></a></dt>
+<dd><p>Get the desired 3D positions along the trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>desired_positions</strong> – x, y, z desired positions over time.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_accelerations">
+<span class="sig-name descname"><span class="pre">plot_desired_accelerations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_accelerations" title="Link to this definition"></a></dt>
+<dd><p>Plot desired acceleration components over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_velocities">
+<span class="sig-name descname"><span class="pre">plot_desired_velocities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_velocities" title="Link to this definition"></a></dt>
+<dd><p>Plot desired velocity components over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_Thrust">
+<span class="sig-name descname"><span class="pre">plot_individual_Thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_Thrust" title="Link to this definition"></a></dt>
+<dd><p>Plot thrust profiles for each propeller over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_rpm">
+<span class="sig-name descname"><span class="pre">plot_individual_rpm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_rpm" title="Link to this definition"></a></dt>
+<dd><p>Plot the RPM evolution of each propeller over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_rpm">
+<span class="sig-name descname"><span class="pre">plot_noised_rpm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_rpm" title="Link to this definition"></a></dt>
+<dd><p>Plot noisy and filtered RPM signals for a selected propeller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Cutoff frequency for optional Butterworth filter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_thrust">
+<span class="sig-name descname"><span class="pre">plot_noised_thrust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_thrust" title="Link to this definition"></a></dt>
+<dd><p>Plot noisy and filtered thrust signals for all propellers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Cutoff frequency for optional Butterworth filter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory">
+<span class="sig-name descname"><span class="pre">plot_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Plot the 3D desired trajectory alongside experimental data (e.g., Qualisys).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array-like</em>) – Measured 3D positions to overlay.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory_2D">
+<span class="sig-name descname"><span class="pre">plot_trajectory_2D</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory_2D" title="Link to this definition"></a></dt>
+<dd><p>Plot desired x, y, z positions separately over time.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Profil">
+<span id="quadcopter-simulator-main-profil-module"></span><h2>Quadcopter_Simulator_main.Profil module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Profil" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Profil.Profil">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Profil.</span></span><span class="sig-name descname"><span class="pre">Profil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">donnees</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Profil.Profil" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Cette classe va permettre de déterminer quel est le Cl et Cd pour un angle d’attaque donné.</p>
+<p>Si on a bcp de données, on peut interpoler (ce qui est clairement plus pratique)</p>
+<p>Temporairement, on va utiliser des données manuelles</p>
+<p>On considère que les données ont la tête suivante :</p>
+<p>Angle d’attaque</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Profil.Profil.angle_normalise">
+<span class="sig-name descname"><span class="pre">angle_normalise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Profil.Profil.angle_normalise" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Profil.Profil.calcul">
+<span class="sig-name descname"><span class="pre">calcul</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Profil.Profil.calcul" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Profil.Profil.getCd">
+<span class="sig-name descname"><span class="pre">getCd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Profil.Profil.getCd" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Profil.Profil.getCl">
+<span class="sig-name descname"><span class="pre">getCl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Profil.Profil.getCl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Propeller">
+<span id="quadcopter-simulator-main-propeller-module"></span><h2>Quadcopter_Simulator_main.Propeller module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Propeller" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Propeller.Propeller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Propeller.</span></span><span class="sig-name descname"><span class="pre">Propeller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diametre_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_sections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cordes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitchs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profils</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Propeller.Propeller" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Donc le propeller est défini par :
+nombre de lames
+diamètre
+une aile décomposée en x éléments (dr)
+Un rayon
+Une corde
+Un pitch</p>
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Propeller_2">
+<span id="quadcopter-simulator-main-propeller-2-module"></span><h2>Quadcopter_Simulator_main.Propeller_2 module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Propeller_2" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Propeller_2.Propeller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Propeller_2.</span></span><span class="sig-name descname"><span class="pre">Propeller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diameter_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_blades</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_sections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitchs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Propeller_2.Propeller" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Section">
+<span id="quadcopter-simulator-main-section-module"></span><h2>Quadcopter_Simulator_main.Section module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Section" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Section.</span></span><span class="sig-name descname"><span class="pre">Section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">largeur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corde</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propeller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Les hypothèses de la BEMT :</p>
+<ul class="simple">
+<li><p>Pas d’intéractions aérodynamique entre les éléments de la lame</p></li>
+<li><p>Les forces sont seulement déterminées par les coefficients de portance et de trainée</p></li>
+</ul>
+<p>Paramètres d’entrées de la section :</p>
+<p>Un rayon = Distance entre le centre et le milieu de la section,
+Une largeur = largeur de la section (va donc dépendre du pas d’échantillonnage),
+Un pitch = un angle en radians de tanguage,
+Une longueur de corde = longueur corde de la section
+Le propeller associé</p>
+<p>A determiner :
+Angle d’attaque (alpha),
+Coefficient de portance (Cp - Cportance)
+Coefficient de trainée (Cd - Cdrag)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section.facteurs_froude">
+<span class="sig-name descname"><span class="pre">facteurs_froude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section.facteurs_froude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section.fonction_phi">
+<span class="sig-name descname"><span class="pre">fonction_phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_inf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section.fonction_phi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section.forces">
+<span class="sig-name descname"><span class="pre">forces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_infini</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section.forces" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section.forces_profil_section">
+<span class="sig-name descname"><span class="pre">forces_profil_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section.forces_profil_section" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section.Section.prandtl_loss_factor">
+<span class="sig-name descname"><span class="pre">prandtl_loss_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section.Section.prandtl_loss_factor" title="Link to this definition"></a></dt>
+<dd><p>Formule trouvée sur internet. Il s’agit de calculer un coefficient F qui, en fonction du rayon, permet de déterminer le tip loss et de
+l’inclure dans notre calcul final.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Section_2">
+<span id="quadcopter-simulator-main-section-2-module"></span><h2>Quadcopter_Simulator_main.Section_2 module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Section_2" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Section_2.</span></span><span class="sig-name descname"><span class="pre">Section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propeller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section.FroudeFactors">
+<span class="sig-name descname"><span class="pre">FroudeFactors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section.FroudeFactors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section.forces">
+<span class="sig-name descname"><span class="pre">forces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_infinity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section.forces" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section.forces_profile_section">
+<span class="sig-name descname"><span class="pre">forces_profile_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section.forces_profile_section" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section.function_phi">
+<span class="sig-name descname"><span class="pre">function_phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_disk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section.function_phi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Section_2.Section.prandtl_loss_factor">
+<span class="sig-name descname"><span class="pre">prandtl_loss_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Section_2.Section.prandtl_loss_factor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-Quadcopter_Simulator_main.Simulateur">
+<span id="quadcopter-simulator-main-simulateur-module"></span><h2>Quadcopter_Simulator_main.Simulateur module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Simulateur" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Simulateur.</span></span><span class="sig-name descname"><span class="pre">Simulateur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_infini</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_lames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diametre_rotor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cordes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitchs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profil</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur.brute_solve">
+<span class="sig-name descname"><span class="pre">brute_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vitesse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3600</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur.brute_solve" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur.calcul">
+<span class="sig-name descname"><span class="pre">calcul</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur.calcul" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur.calcul_rho">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calcul_rho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur.calcul_rho" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur.load_simulateur">
+<span class="sig-name descname"><span class="pre">load_simulateur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur.load_simulateur" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.Simulateur.vitesse_induite_calcul">
+<span class="sig-name descname"><span class="pre">vitesse_induite_calcul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rayon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.Simulateur.vitesse_induite_calcul" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Simulateur.thrust_drag_func">
+<span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Simulateur.</span></span><span class="sig-name descname"><span class="pre">thrust_drag_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Simulateur.thrust_drag_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="quadcopter-simulator-main-simulator-functions-module">
+<h2>Quadcopter_Simulator_main.Simulator_FUNCTIONS module<a class="headerlink" href="#quadcopter-simulator-main-simulator-functions-module" title="Link to this heading"></a></h2>
+</section>
+<section id="quadcopter-simulator-main-simulator-inverse-method-validation-module">
+<h2>Quadcopter_Simulator_main.Simulator_inverse_method_validation module<a class="headerlink" href="#quadcopter-simulator-main-simulator-inverse-method-validation-module" title="Link to this heading"></a></h2>
+</section>
+<section id="quadcopter-simulator-main-trajectory-algorithm-module">
+<h2>Quadcopter_Simulator_main.Trajectory_Algorithm module<a class="headerlink" href="#quadcopter-simulator-main-trajectory-algorithm-module" title="Link to this heading"></a></h2>
+</section>
+<section id="quadcopter-simulator-main-trajectory-algorithm-copy-module">
+<h2>Quadcopter_Simulator_main.Trajectory_Algorithm_Copy module<a class="headerlink" href="#quadcopter-simulator-main-trajectory-algorithm-copy-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-Quadcopter_Simulator_main">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-Quadcopter_Simulator_main" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Corentin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

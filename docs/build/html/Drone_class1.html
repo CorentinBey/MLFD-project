@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drone_class Module &mdash; MLFD Doc 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to MLFD Doc’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MLFD Doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Drone_class Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Drone"><code class="docutils literal notranslate"><span class="pre">Drone</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_rpm"><code class="docutils literal notranslate"><span class="pre">Trajectory.add_noise_rpm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_thrust"><code class="docutils literal notranslate"><span class="pre">Trajectory.add_noise_thrust()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.calc_individual_Thrust"><code class="docutils literal notranslate"><span class="pre">Trajectory.calc_individual_Thrust()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.filter_noise"><code class="docutils literal notranslate"><span class="pre">Trajectory.filter_noise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.get_desired_positions"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_desired_positions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_accelerations"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_desired_accelerations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_velocities"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_desired_velocities()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_Thrust"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_individual_Thrust()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_rpm"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_individual_rpm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_rpm"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_noised_rpm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_thrust"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_noised_thrust()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_trajectory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory_2D"><code class="docutils literal notranslate"><span class="pre">Trajectory.plot_trajectory_2D()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.run_example"><code class="docutils literal notranslate"><span class="pre">run_example()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MLFD Doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Drone_class Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Drone_class1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-Quadcopter_Simulator_main.Drone_class1">
+<span id="drone-class-module"></span><h1>Drone_class Module<a class="headerlink" href="#module-Quadcopter_Simulator_main.Drone_class1" title="Link to this heading"></a></h1>
+<p>Created on Fri Mar  7 09:29:06 2025</p>
+<p>&#64;author: Corentin</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Drone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Drone_class1.</span></span><span class="sig-name descname"><span class="pre">Drone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_arm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_rotor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class representing a multirotor drone’s basic physical parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>float</em>) – Mass of the drone in kg.</p></li>
+<li><p><strong>l_arm</strong> (<em>float</em>) – Arm length in meters.</p></li>
+<li><p><strong>I</strong> (<em>ndarray</em>) – Inertia matrix of the drone.</p></li>
+<li><p><strong>n_rotor</strong> (<em>int</em>) – Number of rotors on the drone.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Drone_class1.</span></span><span class="sig-name descname"><span class="pre">Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Quadcopter_Simulator_main.Drone_class1.Drone"><code class="xref py py-class docutils literal notranslate"><span class="pre">Drone</span></code></a></p>
+<p>A trajectory planner and controller for a multirotor drone.</p>
+<p>Inherits from Drone and computes polynomial trajectories through waypoints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>y</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>z</strong> (<em>list</em><em> of </em><em>float</em>) – Waypoints in meters.</p></li>
+<li><p><strong>t</strong> (<em>list</em><em> of </em><em>float</em>) – Time for each waypoint.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – Identifier name for the trajectory.</p></li>
+<li><p><strong>total_steps</strong> (<em>int</em>) – Number of time steps in the trajectory.</p></li>
+<li><p><strong>drone</strong> (<a class="reference internal" href="#Quadcopter_Simulator_main.Drone_class1.Drone" title="Quadcopter_Simulator_main.Drone_class1.Drone"><em>Drone</em></a>) – The drone object to apply the trajectory to.</p></li>
+<li><p><strong>n_order</strong> (<em>int</em><em>, </em><em>optional</em>) – Order of trajectory polynomials. Default is 4.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_rpm">
+<span class="sig-name descname"><span class="pre">add_noise_rpm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_rpm" title="Link to this definition"></a></dt>
+<dd><p>Add random Gaussian noise to individual propeller RPM signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>noised_signal</strong> – RPM signals with added noise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_thrust">
+<span class="sig-name descname"><span class="pre">add_noise_thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.add_noise_thrust" title="Link to this definition"></a></dt>
+<dd><p>Add random Gaussian noise to individual thrust signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>noised_signal</strong> – Thrust signals with added noise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.calc_individual_Thrust">
+<span class="sig-name descname"><span class="pre">calc_individual_Thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.calc_individual_Thrust" title="Link to this definition"></a></dt>
+<dd><p>Calculate and store individual thrusts per propeller if not already computed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.filter_noise">
+<span class="sig-name descname"><span class="pre">filter_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.filter_noise" title="Link to this definition"></a></dt>
+<dd><p>Filter a signal using optional Butterworth filter + LOWESS smoothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> (<em>array-like</em>) – Data to be smoothed.</p></li>
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>cutoff_freq</strong> (<em>float</em><em>, </em><em>optional</em>) – Butterworth cutoff frequency.</p></li>
+<li><p><strong>sampling_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Data sampling rate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>smoothed_vector</strong> – Smoothed signal.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.get_desired_positions">
+<span class="sig-name descname"><span class="pre">get_desired_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.get_desired_positions" title="Link to this definition"></a></dt>
+<dd><p>Get the desired 3D positions along the trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>desired_positions</strong> – x, y, z desired positions over time.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_accelerations">
+<span class="sig-name descname"><span class="pre">plot_desired_accelerations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_accelerations" title="Link to this definition"></a></dt>
+<dd><p>Plot desired acceleration components over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_velocities">
+<span class="sig-name descname"><span class="pre">plot_desired_velocities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_desired_velocities" title="Link to this definition"></a></dt>
+<dd><p>Plot desired velocity components over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_Thrust">
+<span class="sig-name descname"><span class="pre">plot_individual_Thrust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_Thrust" title="Link to this definition"></a></dt>
+<dd><p>Plot thrust profiles for each propeller over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_rpm">
+<span class="sig-name descname"><span class="pre">plot_individual_rpm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_individual_rpm" title="Link to this definition"></a></dt>
+<dd><p>Plot the RPM evolution of each propeller over time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_rpm">
+<span class="sig-name descname"><span class="pre">plot_noised_rpm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_rpm" title="Link to this definition"></a></dt>
+<dd><p>Plot noisy and filtered RPM signals for a selected propeller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Cutoff frequency for optional Butterworth filter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_thrust">
+<span class="sig-name descname"><span class="pre">plot_noised_thrust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_noised_thrust" title="Link to this definition"></a></dt>
+<dd><p>Plot noisy and filtered thrust signals for all propellers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – LOWESS smoothing fraction.</p></li>
+<li><p><strong>freq</strong> (<em>float</em>) – Cutoff frequency for optional Butterworth filter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory">
+<span class="sig-name descname"><span class="pre">plot_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory" title="Link to this definition"></a></dt>
+<dd><p>Plot the 3D desired trajectory alongside experimental data (e.g., Qualisys).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array-like</em>) – Measured 3D positions to overlay.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory_2D">
+<span class="sig-name descname"><span class="pre">plot_trajectory_2D</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.Trajectory.plot_trajectory_2D" title="Link to this definition"></a></dt>
+<dd><p>Plot desired x, y, z positions separately over time.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+<p>You can generate a default trajectory using:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="Quadcopter_Simulator_main.Drone_class1.run_example">
+<span class="sig-prename descclassname"><span class="pre">Quadcopter_Simulator_main.Drone_class1.</span></span><span class="sig-name descname"><span class="pre">run_example</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Quadcopter_Simulator_main.Drone_class1.run_example" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to MLFD Doc’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Corentin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
