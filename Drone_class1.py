@@ -91,9 +91,15 @@ class Trajectory(Drone):
         self.angle_max = 45
         
         #Bounds of optimization: thrust T must be positive, theta and phi bounded to ±45 deg
+# =============================================================================
+#         self.bounds = [(0.01, None), 
+#                        (-self.angle_max*np.pi/180, self.angle_max*np.pi/180), 
+#                        (-self.angle_max*np.pi/180, self.angle_max*np.pi/180)]  
+# =============================================================================
         self.bounds = [(0.01, None), 
-                       (-self.angle_max*np.pi/180, self.angle_max*np.pi/180), 
-                       (-self.angle_max*np.pi/180, self.angle_max*np.pi/180)]  
+                   (-self.angle_max*np.pi/180, self.angle_max*np.pi/180), 
+                   (-self.angle_max*np.pi/180, self.angle_max*np.pi/180),
+                   (0,5)]  #with fd
         
         self.difference_method = 4
         self.filter_para = [0.5, 0.066, 0.066] #LOWES FILTER parameter aka d
@@ -356,7 +362,7 @@ class Trajectory(Drone):
         cost : float
             Squared error between actual and desired accelerations (cost value).
         """
-        T, theta, phi = T_theta_phi
+        T, theta, phi, Fd = T_theta_phi
         psi = self.psi[0]
         if T <= 0:
             return np.inf  # Penalize invalid thrust values
@@ -364,7 +370,7 @@ class Trajectory(Drone):
         # Calculate actual accelerations
         a_x_actual = T * (np.sin(phi) * np.sin(psi) + np.cos(phi) * np.sin(theta) * np.cos(psi) ) / self.drone.m
         a_y_actual = T * (-np.sin(phi) * np.cos(psi) + np.cos(phi) * np.sin(theta) * np.sin(psi) ) / self.drone.m
-        a_z_actual = (T * np.cos(theta) * np.cos(phi) - self.drone.m * self.drone.g) / self.drone.m
+        a_z_actual = (T * np.cos(theta) * np.cos(phi) - self.drone.m * self.drone.g - Fd) / self.drone.m
         
         # Penalize deviations from desired accelerations
         E_x = (a_x_actual - a_x_desired)**2
@@ -390,19 +396,24 @@ class Trajectory(Drone):
             Gradient vector [dE/dT, dE/dtheta, dE/dphi].
         """
         
-        T, theta, phi = T_theta_phi
+        T, theta, phi, Fd = T_theta_phi
         a_x_actual = (T * np.sin(theta) * np.cos(phi) ) / self.drone.m
         a_y_actual = (T * -np.sin(phi) ) / self.drone.m
-        a_z_actual = (T * np.cos(theta) * np.cos(phi) - self.drone.m * self.drone.g) / self.drone.m  
+        a_z_actual = (T * np.cos(theta) * np.cos(phi) - self.drone.m * self.drone.g - Fd) / self.drone.m  
         
        # If psi is a variable, use the following muted comments a_x and a_y:
        # a_x_actual = T * (np.sin(phi) * np.sin(psi) + np.cos(psi) * np.sin(theta) * np.cos(phi) ) / m
        # a_y_actual = T * (-np.sin(phi) * np.cos(psi) + np.cos(phi) * np.sin(theta) * np.sin(psi) ) / m
        
-        dE_totaldT =     2 * (a_x_actual - a_x_desired) * ( np.sin(theta) * np.cos(phi) ) / self.m  + 2 * (a_y_actual - a_y_desired) * (-np.sin(phi) ) / self.m  +  2 * (a_z_actual - a_z_desired) * (np.cos(theta) * np.cos(phi)) / self.m  
-        dE_totaldtheta = 2 * (a_x_actual - a_x_desired) * T * ( np.cos(theta) * np.cos(phi)) / self.m + 2 * (a_z_actual - a_z_desired) * T * (-np.sin(theta) * np.cos(phi)) / self.m
-        dE_totaldphi =   2 * (a_x_actual - a_x_desired) * ( -T * np.sin(theta) * np.sin(phi)) / self.m +  2 * (a_y_actual - a_y_desired) * T * (-np.cos(phi)) / self.m + 2 * (a_z_actual - a_z_desired) * T * (-np.cos(theta) * np.sin(phi)) / self.m
-
+        dE_totaldT =  (   2 * (a_x_actual - a_x_desired) * ( np.sin(theta) * np.cos(phi) ) / self.m  
+                        + 2 * (a_y_actual - a_y_desired) * (-np.sin(phi) ) / self.m  
+                        + 2 * (a_z_actual - a_z_desired) * (np.cos(theta) * np.cos(phi)) / self.m  )
+        dE_totaldtheta = (  2 * (a_x_actual - a_x_desired) * T * ( np.cos(theta) * np.cos(phi)) / self.m 
+                          + 2 * (a_z_actual - a_z_desired) * T * (-np.sin(theta) * np.cos(phi)) / self.m)
+        dE_totaldphi =   (  2 * (a_x_actual - a_x_desired) * ( -T * np.sin(theta) * np.sin(phi)) / self.m 
+                          +  2 * (a_y_actual - a_y_desired) * T * (-np.cos(phi)) / self.m 
+                          + 2 * (a_z_actual - a_z_desired) * T * (-np.cos(theta) * np.sin(phi)) / self.m)
+        dE_totaldFd = 2 * (a_z_actual - a_z_desired) * (-1 / self.m)
        # if psi is a variable, use the following muted comments for the derivatives:
        # dE_totaldT = 2 * (a_x_actual - a_x_desired) * ( np.sin(phi) * np.sin(psi) + np.cos(psi) * np.sin(theta) * np.cos(phi) ) / m     + 2 * (a_y_actual - a_y_desired) * (-np.sin(phi) * np.cos(psi) + np.cos(phi) * np.sin(theta) * np.sin(psi) ) / m    + 2 * (a_z_actual - a_z_desired) * (np.cos(theta) * np.cos(phi)) / m  
        # dE_totaldphi = 2 * (a_x_actual - a_x_desired) * T * (np.cos(phi) * np.sin(psi) - np.cos(psi) * np.sin(theta) * np.sin(phi)) / m + 2 * (a_y_actual - a_y_desired) * T * (-np.cos(phi) * np.cos(psi) - np.sin(phi) * np.sin(theta) * np.sin(psi)) / m + 2 * (a_z_actual - a_z_desired) * T * (-np.cos(theta) * np.sin(phi)) / m
@@ -411,7 +422,7 @@ class Trajectory(Drone):
                         # 2 * (a_y_actual - a_y_desired) * T * (np.sin(phi) * np.sin(psi) + np.cos(phi) * np.sin(theta) * np.co(psi)) / m 
         
         # Add dE_totaldpsi in the return line too!!
-        return np.array([dE_totaldT, dE_totaldtheta,  dE_totaldphi])
+        return np.array([dE_totaldT, dE_totaldtheta,  dE_totaldphi, dE_totaldFd])
     
     def _T_attitude_optimal(self, a_x_desired, a_y_desired, a_z_desired, time_vector_cost):
         """
@@ -439,16 +450,23 @@ class Trajectory(Drone):
         T_optimal = []
         theta_optimal = []
         phi_optimal = []
-        
+        fd_optimal = []
 
         for t in time_vector_cost:
-            res = minimize(self._cost_function, [self.drone.T_initial, self.theta_initial, self.phi_initial], args=(a_x_desired(t), a_y_desired(t), a_z_desired(t)), method = 'L-BFGS-B',  bounds=self.bounds, jac = self._gradient_function)
+            res = minimize(self._cost_function, [self.drone.T_initial, self.theta_initial, self.phi_initial,0], 
+                           args=(a_x_desired(t), a_y_desired(t), a_z_desired(t)), 
+                           method = 'L-BFGS-B',  
+                           bounds=self.bounds, 
+                           jac = self._gradient_function)
+            
             T_optimal.append(res.x[0])
             theta_optimal.append(res.x[1])
             phi_optimal.append(res.x[2])
+            fd_optimal.append(res.x[3])
             
-            T_initial, theta_initial, phi_initial = res.x
-            
+            T_initial, theta_initial, phi_initial, Fd_initial = res.x
+        
+        print(fd_optimal)    
         return T_optimal, phi_optimal, theta_optimal, time_vector_cost
     
     def _explicit_method(self, a_actual, v_0, v_end):
@@ -1597,6 +1615,7 @@ def run_example():
 
     # --- Define Drone Parameters ---
     m = 1.626  # Mass of the quadcopter in kg
+    #m = 0.5
     l_arm = 0.26608
     g = 9.81  # Gravity in m/s^2
     I = np.array([[0.0213,  9.0792e-7, 1.7882e-7],
@@ -1612,7 +1631,7 @@ def run_example():
     # --- Plotting ---
     Traj_1.plot_trajectory(data_h4) # Plot generated trajectory vs real measured data
     Traj_1.plot_individual_rpm() # Plot computed individual propeller RPMs
-
+    Traj_1.plot_desired_velocities()
     # =============================================================================
     # drone_2 = Drone(m*1.2, l_arm, I, n_rotor=4)
     # Traj_2 = Trajectory(x_waypoint, y_waypoint, z_waypoint, t_waypoint, "Traj2", total_steps, drone_2)
